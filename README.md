@@ -60,3 +60,49 @@ The application handles various exceptions:
 - If a user tries to add a duplicate book, a `DuplicateBookException` is thrown.
 - If a user tries to delete or edit a book that does not exist, a `BookNotFoundException` is thrown.
 - If a user enters invalid input (e.g., non-alphabetic characters for the author's name or an invalid yes/no answer), `InvalidInputException` or `InvalidYesNoInputException` is thrown.
+
+Library Manager (Updated Version)
+Features
+The Personal Library Manager now includes an improved user interface with a sub-menu for searching books by title, author, or genre. This new feature enhances the flexibility of the application and makes it easier for users to search books by different attributes.
+Updated Menu Structure
+The updated menu now includes a sub-menu for search operations, which allows the user to perform more specific search queries for books.
+The main menu now looks like this:
+Personal Library Manager
+1. Add Book
+2. Edit Book
+3. Delete Book
+4. Search
+5. Show Reading Stats
+6. Display All Books
+7. Exit
+   When the user selects the Search option (4), they are presented with a sub-menu to choose the search criteria:
+   Search Menu:
+1. Search by Title
+2. Search by Author
+3. Search by Genre
+4. Back to Main Menu
+   This allows the user to search books using any of the following options:
+* Search by Title
+* Search by Author
+* Search by Genre
+
+Key Changes in the Code
+* Search Menu: A sub-menu was added to allow users to search by title, author, or genre.
+
+New Menu:
+Personal Library Manager
+1. Add Book
+2. Edit Book
+3. Delete Book
+4. Search
+5. Show Reading Stats
+6. Display All Books
+7. Exit
+   Enter your choice:
+
+Search Menu:
+1. Search by Title
+2. Search by Author
+3. Search by Genre
+4. Back to Main Menu
+   Enter your choice: 
