@@ -16,12 +16,10 @@ public class Main {
                     case 1 -> addBook();
                     case 2 -> editBook();
                     case 3 -> deleteBook();
-                    case 4 -> searchByTitle();
-                    case 5 -> searchByAuthor();
-                    case 6 -> searchByGenre();
-                    case 7 -> showStats();
-                    case 8 -> displayAllBooks();
-                    case 9 -> System.exit(0);
+                    case 4 -> searchBooks();
+                    case 5 -> showStats();
+                    case 6 -> displayAllBooks();
+                    case 7 -> System.exit(0);
                     default -> System.out.println("Invalid choice!");
                 }
             } catch (Exception e) {
@@ -35,14 +33,13 @@ public class Main {
         System.out.println("1. Add Book");
         System.out.println("2. Edit Book");
         System.out.println("3. Delete Book");
-        System.out.println("4. Search by Title");
-        System.out.println("5. Search by Author");
-        System.out.println("6. Search by Genre");
-        System.out.println("7. Show Reading Stats");
-        System.out.println("8. Display All Books"); // New option
-        System.out.println("9. Exit");
+        System.out.println("4. Search Books");
+        System.out.println("5. Show Reading Stats");
+        System.out.println("6. Display All Books");
+        System.out.println("7. Exit");
         System.out.print("Enter your choice: ");
     }
+
 
 
     public static boolean isValidString(String input) {
@@ -117,6 +114,30 @@ public class Main {
         String title = scanner.nextLine();
         manager.deleteBook(title);
         System.out.println("Book deleted successfully!");
+    }
+
+    private static void searchBooks() {
+        while (true) {
+            System.out.println("\nSearch by:");
+            System.out.println("1. Title");
+            System.out.println("2. Author");
+            System.out.println("3. Genre");
+            System.out.println("4. Go Back");
+            System.out.print("Enter your choice: ");
+            int choice = scanner.nextInt();
+            scanner.nextLine();  // Consume the newline
+
+            switch (choice) {
+                case 1 -> searchByTitle();
+                case 2 -> searchByAuthor();
+                case 3 -> searchByGenre();
+                case 4 -> {
+                    System.out.println("Going back to the main menu...");
+                    return;
+                }
+                default -> System.out.println("Invalid choice! Please try again.");
+            }
+        }
     }
 
     private static void searchByTitle() {
