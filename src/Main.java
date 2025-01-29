@@ -52,7 +52,7 @@ public class Main {
         String genre = scanner.nextLine();
         System.out.print("Have you read it? (true/false): ");
         boolean isRead = scanner.nextBoolean();
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine();
 
         Book book = new Book(title, author, genre, isRead);
         manager.addBook(book);
@@ -71,7 +71,7 @@ public class Main {
         String genre = scanner.nextLine();
         System.out.print("Have you read it? (true/false): ");
         boolean isRead = scanner.nextBoolean();
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine();
 
         Book updatedBook = new Book(title, author, genre, isRead);
         manager.editBook(oldTitle, updatedBook);

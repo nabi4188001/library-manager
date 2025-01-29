@@ -12,7 +12,7 @@ public class Book extends Media {
         this.isRead = isRead;
     }
 
-    // Getters and setters
+
     public String getGenre() { return genre; }
     public void setGenre(String genre) { this.genre = genre; }
     public boolean isRead() { return isRead; }
