@@ -17,6 +17,9 @@ public class LibraryManager implements Searchable {
         existing.setGenre(newBook.getGenre());
         existing.setRead(newBook.isRead());
     }
+    public void deleteBook(String title) throws BookNotFoundException {
+        books.remove(getBookByTitle(title));
+    }
 
 }
 
