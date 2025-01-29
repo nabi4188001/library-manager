@@ -21,5 +21,12 @@ public class LibraryManager implements Searchable {
         books.remove(getBookByTitle(title));
     }
 
+    private Book getBookByTitle(String title) throws BookNotFoundException {
+        return books.stream()
+                .filter(b -> b.getTitle().equalsIgnoreCase(title))
+                .findFirst()
+                .orElseThrow(() -> new BookNotFoundException("Book not found: " + title));
+    }
+
 }
 
