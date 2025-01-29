@@ -9,7 +9,7 @@ public class Main {
         while (true) {
             printMenu();
             int choice = scanner.nextInt();
-            scanner.nextLine();  // Consume newline
+            scanner.nextLine();
 
             try {
                 switch (choice) {
@@ -20,7 +20,8 @@ public class Main {
                     case 5 -> searchByAuthor();
                     case 6 -> searchByGenre();
                     case 7 -> showStats();
-                    case 8 -> System.exit(0);
+                    case 8 -> displayAllBooks();
+                    case 9 -> System.exit(0);
                     default -> System.out.println("Invalid choice!");
                 }
             } catch (Exception e) {
@@ -38,9 +39,11 @@ public class Main {
         System.out.println("5. Search by Author");
         System.out.println("6. Search by Genre");
         System.out.println("7. Show Reading Stats");
-        System.out.println("8. Exit");
+        System.out.println("8. Display All Books"); // New option
+        System.out.println("9. Exit");
         System.out.print("Enter your choice: ");
     }
+
 
     public static boolean isValidString(String input) {
         return input.matches("[a-zA-Z]+");
@@ -62,7 +65,7 @@ public class Main {
 
         System.out.print("Have you read it? (true/false): ");
         boolean isRead = scanner.nextBoolean();
-        scanner.nextLine(); // Consume newline
+        scanner.nextLine();
 
         Book book = new Book(title, author, genre, isRead);
         manager.addBook(book);
@@ -136,5 +139,15 @@ public class Main {
             books.forEach(System.out::println);
         }
     }
+
+    private static void displayAllBooks() {
+        List<Book> allBooks = manager.searchByTitle(""); // Empty string retrieves all books
+        if (allBooks.isEmpty()) {
+            System.out.println("No books available.");
+        } else {
+            allBooks.forEach(System.out::println);
+        }
+    }
+
 
 }
