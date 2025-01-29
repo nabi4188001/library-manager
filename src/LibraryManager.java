@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-public class LibraryManager implements Searchable {
+public class LibraryManager {
     private final List<Book> books = new ArrayList<>();
 
     public void addBook(Book book) throws DuplicateBookException {
