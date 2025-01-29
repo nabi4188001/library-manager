@@ -35,6 +35,13 @@ public class LibraryManager implements Searchable {
                 .toList();
     }
 
+    @Override
+    public List<Book> searchByAuthor(String author) {
+        return books.stream()
+                .filter(b -> b.getAuthor().equalsIgnoreCase(author))
+                .toList();
+    }
+
 
 }
 
