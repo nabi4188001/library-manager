@@ -1,4 +1,3 @@
-
 import java.util.*;
 
 public class Main {
@@ -42,8 +41,12 @@ public class Main {
 
 
 
-    public static boolean isValidString(String input) {
-        return input.matches("[a-zA-Z]+");
+    public static boolean isValidAuthor(String input) {
+        return input.matches("[a-zA-Z\\s]+");
+    }
+
+    public static boolean isValidTitle(String input) {
+        return input.matches("[a-zA-Z\\s]+");
     }
 
 
@@ -51,10 +54,17 @@ public class Main {
         System.out.print("Enter book title: ");
         String title = scanner.nextLine();
 
+        // Title validation
+        if (!isValidTitle(title)) {
+            throw new InvalidInputException("Title must only contain letters and spaces, and cannot contain numbers.");
+        }
+
         System.out.print("Enter author: ");
         String author = scanner.nextLine();
-        if (!isValidString(author)) {
-            throw new InvalidInputException("Author name must contain only letters.");
+
+        // Author validation
+        if (!isValidAuthor(author)) {
+            throw new InvalidInputException("Author name must contain only letters and spaces.");
         }
 
         System.out.print("Enter genre: ");
@@ -83,10 +93,17 @@ public class Main {
         System.out.print("Enter new title: ");
         String title = scanner.nextLine();
 
+        // Title validation
+        if (!isValidTitle(title)) {
+            throw new InvalidInputException("Title must only contain letters and spaces, and cannot contain numbers.");
+        }
+
         System.out.print("Enter new author: ");
         String author = scanner.nextLine();
-        if (!isValidString(author)) {
-            throw new InvalidInputException("Author name must contain only letters.");
+
+        // Author validation
+        if (!isValidAuthor(author)) {
+            throw new InvalidInputException("Author name must contain only letters and spaces.");
         }
 
         System.out.print("Enter new genre: ");
