@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-public class LibraryManager {
+public class LibraryManager implements Searchable {
     private final List<Book> books = new ArrayList<>();
 
     public void addBook(Book book) throws DuplicateBookException {
@@ -27,6 +27,14 @@ public class LibraryManager {
                 .findFirst()
                 .orElseThrow(() -> new BookNotFoundException("Book not found: " + title));
     }
+
+    @Override
+    public List<Book> searchByTitle(String title) {
+        return books.stream()
+                .filter(b -> b.getTitle().equalsIgnoreCase(title))
+                .toList();
+    }
+
 
 }
 
