@@ -42,36 +42,52 @@ public class Main {
         System.out.print("Enter your choice: ");
     }
 
+    public static boolean isValidString(String input) {
+        return input.matches("[a-zA-Z]+");
+    }
 
-    private static void addBook() throws DuplicateBookException {
+
+    private static void addBook() throws DuplicateBookException, InvalidInputException {
         System.out.print("Enter book title: ");
         String title = scanner.nextLine();
+
         System.out.print("Enter author: ");
         String author = scanner.nextLine();
+        if (!isValidString(author)) {
+            throw new InvalidInputException("Author name must contain only letters.");
+        }
+
         System.out.print("Enter genre: ");
         String genre = scanner.nextLine();
+
         System.out.print("Have you read it? (true/false): ");
         boolean isRead = scanner.nextBoolean();
-        scanner.nextLine();
+        scanner.nextLine(); // Consume newline
 
         Book book = new Book(title, author, genre, isRead);
         manager.addBook(book);
         System.out.println("Book added successfully!");
     }
 
-    private static void editBook() throws BookNotFoundException {
+    private static void editBook() throws BookNotFoundException, InvalidInputException {
         System.out.print("Enter the title of the book to edit: ");
         String oldTitle = scanner.nextLine();
 
         System.out.print("Enter new title: ");
         String title = scanner.nextLine();
+
         System.out.print("Enter new author: ");
         String author = scanner.nextLine();
+        if (!isValidString(author)) {
+            throw new InvalidInputException("Author name must contain only letters.");
+        }
+
         System.out.print("Enter new genre: ");
         String genre = scanner.nextLine();
+
         System.out.print("Have you read it? (true/false): ");
         boolean isRead = scanner.nextBoolean();
-        scanner.nextLine();
+        scanner.nextLine(); // Consume newline
 
         Book updatedBook = new Book(title, author, genre, isRead);
         manager.editBook(oldTitle, updatedBook);
