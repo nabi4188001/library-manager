@@ -42,6 +42,21 @@ public class LibraryManager implements Searchable {
                 .toList();
     }
 
+    @Override
+    public List<Book> searchByGenre(String genre) {
+        return books.stream()
+                .filter(b -> b.getGenre().equalsIgnoreCase(genre))
+                .toList();
+    }
+
+    public Map<String, Integer> getReadingStats() {
+        int read = (int) books.stream().filter(Book::isRead).count();
+        return Map.of(
+                "read", read,
+                "unread", books.size() - read
+        );
+    }
+
 
 }
 
