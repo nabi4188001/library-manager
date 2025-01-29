@@ -10,5 +10,13 @@ public class LibraryManager implements Searchable {
         }
         books.add(book);
     }
+    public void editBook(String oldTitle, Book newBook) throws BookNotFoundException {
+        Book existing = getBookByTitle(oldTitle);
+        existing.setTitle(newBook.getTitle());
+        existing.setAuthor(newBook.getAuthor());
+        existing.setGenre(newBook.getGenre());
+        existing.setRead(newBook.isRead());
+    }
+
 }
 
