@@ -50,7 +50,7 @@ public class Main {
     }
 
 
-    private static void addBook() throws DuplicateBookException, InvalidInputException {
+    private static void addBook() throws DuplicateBookException, InvalidInputException, InvalidYesNoInputException {
         System.out.print("Enter book title: ");
         String title = scanner.nextLine();
 
@@ -63,16 +63,23 @@ public class Main {
         System.out.print("Enter genre: ");
         String genre = scanner.nextLine();
 
-        System.out.print("Have you read it? (true/false): ");
-        boolean isRead = scanner.nextBoolean();
-        scanner.nextLine();
+        System.out.print("Have you read it? (yes/no): ");
+        String readInput = scanner.nextLine().toLowerCase();
+        boolean isRead;
+        if (readInput.equals("yes")) {
+            isRead = true;
+        } else if (readInput.equals("no")) {
+            isRead = false;
+        } else {
+            throw new InvalidYesNoInputException("Please enter 'yes' or 'no'.");
+        }
 
         Book book = new Book(title, author, genre, isRead);
         manager.addBook(book);
         System.out.println("Book added successfully!");
     }
 
-    private static void editBook() throws BookNotFoundException, InvalidInputException {
+    private static void editBook() throws BookNotFoundException, InvalidInputException, InvalidYesNoInputException {
         System.out.print("Enter the title of the book to edit: ");
         String oldTitle = scanner.nextLine();
 
@@ -88,14 +95,22 @@ public class Main {
         System.out.print("Enter new genre: ");
         String genre = scanner.nextLine();
 
-        System.out.print("Have you read it? (true/false): ");
-        boolean isRead = scanner.nextBoolean();
-        scanner.nextLine(); // Consume newline
+        System.out.print("Have you read it? (yes/no): ");
+        String readInput = scanner.nextLine().toLowerCase();
+        boolean isRead;
+        if (readInput.equals("yes")) {
+            isRead = true;
+        } else if (readInput.equals("no")) {
+            isRead = false;
+        } else {
+            throw new InvalidYesNoInputException("Please enter 'yes' or 'no'.");
+        }
 
         Book updatedBook = new Book(title, author, genre, isRead);
         manager.editBook(oldTitle, updatedBook);
         System.out.println("Book updated successfully!");
     }
+
 
     private static void deleteBook() throws BookNotFoundException {
         System.out.print("Enter the title of the book to delete: ");
@@ -141,13 +156,13 @@ public class Main {
     }
 
     private static void displayAllBooks() {
-        List<Book> allBooks = manager.searchByTitle(""); // Empty string retrieves all books
+        List<Book> allBooks = manager.getBooks();
         if (allBooks.isEmpty()) {
             System.out.println("No books available.");
         } else {
+            System.out.println("\nBooks in the library:");
             allBooks.forEach(System.out::println);
         }
     }
-
 
 }

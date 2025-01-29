@@ -49,6 +49,11 @@ public class LibraryManager implements Searchable {
                 .toList();
     }
 
+    public List<Book> getBooks() {
+        return books;
+    }
+
+
     public Map<String, Integer> getReadingStats() {
         int read = (int) books.stream().filter(Book::isRead).count();
         return Map.of(
